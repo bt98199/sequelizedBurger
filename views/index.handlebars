@@ -1,0 +1,66 @@
+{{!-- Setup the index.handlebars to have the template that Handlebars can render onto. --}}
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+          <div class="col-8">
+            <h1 id="color-override">Queue Burgers.  Eat 'em</h1>
+            <p id="color-override">Enter the Burgers below, click on the buttons to eat or trash the leftovers</p>
+            <h2 id="color-override">Enter the burger you want to make</h2>
+          </div>
+          <div class="col-4">
+              <img src="/assets/img/burger_fud.png" alt= "burger_fud.png" id ="burger">
+          </div>
+        </div>
+        <card>
+            <form class="create-form">
+                <div class="form-group">
+                    <label for="newburger" id="color-override">New Burger:</label>
+                    <input type="text" id="newburger" name="burger">
+                    {{!-- Create a button in index.handlebars that will submit the user input into the database. --}}
+                    <button type="submit" class="btn btn-success" id="addburger"><span class="fa fa-thumbs-up"></span></button>
+                    {{!-- Let user know there is an api availble to reduce bandwidth if possible --}}
+                    <span id ="api-id">Save time. <a href="/api/burgers" target="_blank">Use our API!</a></span>
+                </div>
+            </form>
+        </card>
+    </div><!-- /jumbotron -->
+
+    <div class="row">
+        <!-- Undevoured Burgers if devoured === false -->
+        <div class="col-sm-6">
+            <div class="card card-default">
+                <div class="card-heading" id="lefthead"><strong>New Burgers</strong></div>
+                <div class="card-body leftcard">
+                    <ul>
+                        {{#each burgers}}
+                            {{#unless devoured}}
+                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                <button type="button" class="eatburger btn btn-warning" id ="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span></button>
+                                <hr>
+                            {{/unless}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Devoured Burgers If devoured === true -->
+        <div class="col-sm-6">
+            <div class="card card-default">
+                <div class="card-heading" id="righthead"><strong>Devoured Burgers</strong></div>
+                <div class="card-body rightcard">
+                    <ul>
+                        {{#each burgers}}
+                            {{#if devoured}}
+                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                <button type="button" class="trashburger btn btn-danger" id ="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                                {{!-- Didn't seem like there were enough burgers, til there were --}}
+                                 <button type="button" class="second-harvest-burger btn btn-success" id ="second-harvest-button" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fas fa-fish"></span></button>
+                                <hr>
+                            {{/if}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- /row -->
+</div><!-- /container -->

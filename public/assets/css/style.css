@@ -1,0 +1,58 @@
+.jumbotron {
+    background-color: beige;
+    color: black;
+    padding: 1.5rem;
+    margin-bottom: 3px;
+    border: 1px solid black;
+    padding: 12px;
+    font-family: Calibri, Arial;
+}
+
+.jumbotron > h1 {
+    font-family: Calibri, Arial;
+    color: black;
+}
+
+.leftcard {
+    text-align: left;
+    padding: 24px 24px 24px 0;
+}
+
+#newburger {
+    border-radius: 5px;
+}
+
+#color-override {
+    color: black;
+}
+
+#lefthead {
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    border: black 1px solid;
+}
+
+#eatbutton, #trashbutton, #second-harvest-button {
+    float: right;
+}
+
+#righthead {
+    background-color: #f0ad4e;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    border: black 1px solid;
+}
+#burger {
+    width: 150px;
+    float: right
+}
+
+#api-id {
+    text-align: right;
+    float: right;
+    padding: 30px 10px 10px 10px;
+}
+
