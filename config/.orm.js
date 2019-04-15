@@ -1,4 +1,4 @@
-var connection = require("../config/connection.js");
+var connection = require("./.connection.js/index.js");
 
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {
@@ -30,9 +30,9 @@ function objToSql(ob) {
 
 var orm = {
     // Display all burgers in the db.
-    selectAll: function(table, cb) {
+    selectAll: function (table, cb) {
         var queryString = "SELECT * FROM " + table + ";"; //  I don't know that the ; is needed here but will leave it in so long as it works
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
             }
@@ -40,7 +40,7 @@ var orm = {
         });
     },
     // Add a burger to the db.
-    insertOne: function(table, cols, vals, cb) {
+    insertOne: function (table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
         queryString += " (";
         queryString += cols.toString();
@@ -51,7 +51,7 @@ var orm = {
 
         console.log(queryString);
 
-        connection.query(queryString, vals, function(err, result) {
+        connection.query(queryString, vals, function (err, result) {
             if (err) {
                 throw err
             }
@@ -59,7 +59,7 @@ var orm = {
         });
     },
     // Set burger devoured status to true.
-    updateOne: function(table, objColVals, condition, cb) {
+    updateOne: function (table, objColVals, condition, cb) {
         var queryString = "UPDATE " + table;
         queryString += " SET ";
         queryString += objToSql(objColVals);
@@ -68,7 +68,7 @@ var orm = {
 
         console.log(queryString);
 
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, function (err, result) {
             if (err) {
                 throw err
             }
@@ -76,14 +76,14 @@ var orm = {
         });
     },
     // Delete a burger from the db.
-    deleteOne: function(table, condition, cb) {
+    deleteOne: function (table, condition, cb) {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE ";
         queryString += condition;
 
         console.log(queryString);
 
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, function (err, result) {
             if (err) {
                 throw err
             }

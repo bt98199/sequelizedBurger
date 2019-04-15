@@ -1,75 +1,73 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-
+$(function () {
     // Add a new burger.
-    $(".create-form").on("submit", function(event) {
+    $('.create-form').on('submit', function (event) {
         event.preventDefault();
-
         var newBurger = {
-            burger_name: $("#newburger").val().trim(),
+            burger_name: $('#newburger').val().trim(),
             devoured: 0
         };
 
         // Send the POST request.
-        $.ajax("/api/burgers", {
-            type: "POST",
+        $.ajax('/api/burgers', {
+            type: 'POST',
             data: newBurger
-        }).then(function() {
-            console.log("Added new burger");
+        }).then(function () {
+            console.log('Added new burger');
             // Reload the page to get the updated burger list.
             location.reload();
         });
     });
 
-    $(".eatburger").on("click", function(event) {
+    $('.eatburger').on('click', function (event) {
         event.preventDefault();
 
-        var id = $(this).data("id");
+        var id = $(this).data('id');
         var devouredState = {
             devoured: 1
         };
 
         // Send the PUT request for devoured status.
-        $.ajax("/api/burgers/" + id, {
-            type: "PUT",
+        $.ajax('/api/burgers/' + id, {
+            type: 'PUT',
             data: devouredState
-        }).then(function() {
-            console.log("Burger devoured");
+        }).then(function () {
+            console.log('Burger devoured');
             location.reload();
         });
     });
 
-    $(".second-harvest-burger").on("click", function(event) {
+    $('.second-harvest-burger').on('click', function (event) {
         event.preventDefault();
 
-        var id = $(this).data("id");
+        var id = $(this).data('id');
         var devouredState = {
             devoured: 0
         };
 
         // Send the PUT request for no longer devoured status.
-        $.ajax("/api/burgers/" + id, {
-            type: "PUT",
+        $.ajax('/api/burgers/' + id, {
+            type: 'PUT',
             data: devouredState
-        }).then(function() {
-            console.log("Burger Lazurused");
+        }).then(function () {
+            console.log('Burger Lazurused');
             location.reload();
         });
     });
 
-    $(".trashburger").on("click", function(event) {
+    $('.trashburger').on('click', function (event) {
         event.preventDefault();
 
-        var id = $(this).data("id");
+        var id = $(this).data('id');
 
         // Send the DELETE request.
         $.ajax({
-            type: "DELETE",
-            url: "/api/burgers/" + id
+            type: 'DELETE',
+            url: '/api/burgers/' + id
         }).then(location.reload());
     });
 
 
-  
+
 
 })
